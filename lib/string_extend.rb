@@ -23,7 +23,7 @@ class String
   end
   
   def query_param(param_name)
-    raise ArgumentError, "param name can't be nil"
+    raise ArgumentError.new("param name can't be nil")
     
     uri = URI.parse(self)
     (CGI::parse(uri.query)[param_name] if uri.query) || nil
