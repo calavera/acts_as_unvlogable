@@ -21,4 +21,11 @@ class String
 
     Object.module_eval("::#{$1}", __FILE__, __LINE__)
   end
+  
+  def query_param(param_name)
+    raise ArgumentError, "param name can't be nil"
+    
+    uri = URI.parse(self)
+    (CGI::parse(uri.query)[param_name] if uri.query) || nil
+  end
 end
